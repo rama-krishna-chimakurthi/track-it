@@ -1,9 +1,10 @@
 "use client";
 import { auth, googleProvider } from "@/firebase.config";
+import { saveUser } from "@/services/user.service";
 import { signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const SignIn = () => {
@@ -13,7 +14,8 @@ const SignIn = () => {
 
   const handleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const creds = await signInWithPopup(auth, googleProvider);
+      await saveUser(creds.user);
       router.push("/dashboard");
     } catch (error) {
       console.error("Error signing in with Google:", error);
