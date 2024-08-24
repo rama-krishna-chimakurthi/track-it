@@ -35,7 +35,9 @@ const SideNav = () => {
               key={item.label}
               className={cn("sidebar-link", { "bg-purple-500": isActive })}
             >
-              <div className="relative size-6">
+              <div
+                className={`${isActive ? "text-white" : ""} relative size-6`}
+              >
                 {/* <Image 
                   src={item.imgURL}
                   alt={item.label}
@@ -65,17 +67,17 @@ export default SideNav;
 
 export const sidebarLinks = [
   {
-    imgURL: <FaHome />,
+    imgURL: <FaHome size="1.5rem" />,
     route: "/dashboard",
     label: "Home",
   },
   {
-    imgURL: <CiDollar />,
+    imgURL: <CiDollar size="1.5rem" />,
     route: "/my-assets",
     label: "My Assets",
   },
   {
-    imgURL: <GrTransaction />,
+    imgURL: <GrTransaction size="1.5rem" />,
     route: "/transaction-history",
     label: "Transaction History",
   },
